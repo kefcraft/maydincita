@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Flores Amarillas 💛</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .ramo {
+      font-size: 80px;
+      animation: balanceo 3s infinite ease-in-out;
+    }
+
+    @keyframes balanceo {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-3deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .nota {
+      margin-top: 30px;
+      font-size: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+
+    #playBtn {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #ffd54a;
+      color: #000;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="ramo">💐🌼🌼🌼💐🌼🌼🌼💐</div>
+
+  <div class="nota">
+    "No serán reales, pero es la manera de expresarte mi amor por medio de algo que amo.  
+    Quiero que sepas que te amo aún más que todas mis pasiones,  
+    porque tú eres mi pasión y mi amor." 💛
+  </div>
+
+  <!-- Música de fondo -->
+  <audio autoplay loop>
+    <source src="pasilyo.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio en HTML5.
+  </audio>
+
+  <!-- Botón de fallback si el navegador bloquea autoplay -->
+  <button id="playBtn">Toca para escuchar ♫</button>
+
+  <script>
+    const audio = document.querySelector('audio');
+    const btn = document.getElementById('playBtn');
+
+    audio.addEventListener('play', ()=> btn.style.display = 'none');
+
+    btn.addEventListener('click', async () => {
+      try {
+        await audio.play();
+        btn.style.display = 'none';
+      } catch (e) {
+        alert('Toca la pantalla o permite reproducción para escuchar la canción.');
+      }
+    });
+
+    setTimeout(()=> {
+      if (!audio.paused) btn.style.display = 'none';
+    }, 500);
+  </script>
+</body>
+</html>
